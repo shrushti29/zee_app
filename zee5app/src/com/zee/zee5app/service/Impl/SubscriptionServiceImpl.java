@@ -1,5 +1,7 @@
 package com.zee.zee5app.service.Impl;
 
+import java.util.ArrayList;
+
 import com.zee.zee5app.dto.Subscription;
 import com.zee.zee5app.repository.SubscriptionRepository2;
 import com.zee.zee5app.repository.Impl.SubscriptionRepositoryImpl;
@@ -40,7 +42,7 @@ public class SubscriptionServiceImpl implements SubscriptionService2 {
 	}
 
 	@Override
-	public Subscription[] getAllSubscriptions() {
+	public ArrayList<Subscription> getAllSubscriptions() {
 		// TODO Auto-generated method stub
 		return subscriptionservice.getSubscriptions();
 	}
