@@ -1,13 +1,19 @@
+
 package com.zee.zee5app.dto;
 
+//arrayList
+//hashset movies
+//treeset series
+
+//exception-namenotfound,locationnotfound,invalidamount
+
+
+import java.util.Comparator;
 import java.util.Objects;
 
-
-
-import com.zee.zee5app.exception.InvalidEmailException;
 import com.zee.zee5app.exception.InvalidIdException;
-import com.zee.zee5app.exception.InvalidNameException;
-import com.zee.zee5app.exception.InvalidPasswordException;
+import com.zee.zee5app.exception.*;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +28,8 @@ import lombok.ToString;
 //@AllArgsConstructor
 @Setter
 @Getter
-public class Register {	
+public class Register implements Comparable<Register>
+{	
 	public Register (String id, String firstName, String lastName, String email, String password)
 	throws InvalidIdException,InvalidNameException, 
 	InvalidEmailException, InvalidPasswordException{
@@ -95,6 +102,12 @@ public class Register {
 	@Override
 	public int hashCode() {
 		return Objects.hash(email, firstName, id, lastName, password);
+	}
+	
+	@Override
+	public int compareTo(Register o) {
+		// TODO Auto-generated method stub
+		return this.getFirstName().length()-o.getFirstName().length();
 	}
 
 	
