@@ -100,9 +100,9 @@ public class Main {
 			try {
 				register2.setId("abbba"+i);
 				register2.setEmail("abbba"+i+"@gmail.com");
-				register2.setFirstName("prats"+i);
-				register2.setLastName("pat"+i);
-				register2.setPassword("Prateek"+i);
+				register2.setFirstName("Shrush"+i);
+				register2.setLastName("Hegde"+i);
+				register2.setPassword("Shrushti"+i);
 			} catch (InvalidIdException | InvalidEmailException | InvalidNameException | InvalidPasswordException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
