@@ -1,9 +1,13 @@
 package com.zee.zee5app.service.Impl;
 
+import java.util.Optional;
+
 import com.zee.zee5app.dto.Movies;
 import com.zee.zee5app.repository.MovieRepository2;
 import com.zee.zee5app.repository.Impl.MovieRepositoryImpl;
 import com.zee.zee5app.service.MovieService2;
+
+import com.zee.zee5app.exception.*;
 
 public class MovieServiceImpl implements MovieService2 {
 	
@@ -31,7 +35,7 @@ public class MovieServiceImpl implements MovieService2 {
 	}
 
 	@Override
-	public Movies getMovieById(String id) {
+	public Optional<Movies> getMovieById(String id) throws MovieIdNotFoundException {
 		// TODO Auto-generated method stub
 		return movierepository.getMovieById(id);
 	}
@@ -43,7 +47,7 @@ public class MovieServiceImpl implements MovieService2 {
 	}
 
 	@Override
-	public String deleteMovieById(String id) {
+	public String deleteMovieById(String id) throws MovieIdNotFoundException {
 		// TODO Auto-generated method stub
 		return movierepository.deleteMovieById(id);
 	}

@@ -1,16 +1,16 @@
 package com.zee.zee5app.repository.Impl;
 
 
-import com.zee.zee5app.dto.Movies;
-import com.zee.zee5app.dto.Register;
-import com.zee.zee5app.repository.MovieRepository2;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Optional;
 
+import com.zee.zee5app.dto.Movies;
+import com.zee.zee5app.dto.Register;
+import com.zee.zee5app.repository.MovieRepository2;
 
-import com.zee.zee5app.exception.MovieIdNotFoundException;
+import com.zee.zee5app.exception.*;
 
 public class MovieRepositoryImpl implements MovieRepository2 {
 	private HashSet<Movies> movies=new LinkedHashSet<>();
