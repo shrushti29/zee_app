@@ -21,7 +21,7 @@ public class MainSpring {
 		UserRepository userRepository = applicationContext.getBean(UserRepository.class);
 
 		try {
-			Register register = new Register("register1", "shika", "reddy", "shika@gmail.com", "rish123", null);
+			Register register = new Register("regir123", "ishika", "shetty", "ishika@gmail.com", "ish123", null);
 			register.setContactNumber(new BigDecimal("9321654870"));
 			String result = userRepository.addUser(register);
 			System.out.println(result);
