@@ -1,11 +1,16 @@
 package com.zee.zee5_app.dto;
 
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,8 +22,9 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name="episode")
+@Table(name = "episode")
 public class Episode implements Comparable<Episode> {
 	
 //	public Episode(String id, String serId, String name, float length, String location, String trailer) {
@@ -30,19 +36,21 @@ public class Episode implements Comparable<Episode> {
 //		this.location = location;
 //		this.trailer = trailer;
 //	}
-@Id
-@NotBlank
+	
+	@Id
+	@Column(name = "epiId")
 	private String id;
-@NotBlank
-	private String serId;
-@NotBlank
+	@NotBlank
 	private String name;
-@NotNull
+	@NotNull
 	private float length;
 	@NotBlank
 	private String location;
-	@NotBlank
 	private String trailer;
+	
+	@ManyToOne
+	@JoinColumn(name = "serId")
+	private Series series;
 	
 	@Override
 	public int compareTo(Episode o) {

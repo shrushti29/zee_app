@@ -1,14 +1,16 @@
 package com.zee.zee5_app.dto;
 
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.zee.zee5_app.exception.InvalidIdLengthException;
-
-import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,8 +22,9 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name="subscription")
+@Table(name = "subscription")
 public class Subscription implements Comparable<Subscription> {
 	
 //	public Subscription(String id, String dateOfPurchase, String expiryDate, float amount, String paymentMode,
@@ -37,30 +40,28 @@ public class Subscription implements Comparable<Subscription> {
 //		this.autoRenewal = autoRenewal;
 //		this.regId = regId;
 //	}
-@Id
 	
+	@Id
+	@Column(name = "subId")
 	private String id;
-@NotNull
+	@NotNull
 	private String dateOfPurchase;
-@NotNull
+	@NotNull
 	private String expiryDate;
-@NotNull
+	@NotNull
 	private float amount;
-@NotNull
+	@NotBlank
 	private String paymentMode;
-@NotBlank
+	@NotBlank
 	private String status;
-@NotBlank
+	@NotBlank
 	private String type;
-@NotBlank
+	@NotBlank
 	private String autoRenewal;
-	private String regId;
 	
-	public void setId(String id) throws InvalidIdLengthException {
-		if(id.length()<6)
-			throw new InvalidIdLengthException("id length is less than 6");
-		this.id = id;
-	}
+	@OneToOne
+	@JoinColumn(name = "regId")
+	private Register register;
 	
 	@Override
 	public int compareTo(Subscription o) {

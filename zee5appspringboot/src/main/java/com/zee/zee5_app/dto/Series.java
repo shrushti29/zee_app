@@ -1,17 +1,22 @@
 package com.zee.zee5_app.dto;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-import com.zee.zee5_app.exception.InvalidIdLengthException;
-import com.zee.zee5_app.exception.InvalidNameException;
-
-import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,8 +28,9 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "name")})
+@Table(name = "series", uniqueConstraints = {@UniqueConstraint(columnNames = "name")})
 public class Series implements Comparable<Series> {
 	
 //	public Series(String id, String name, int ageLimit, String trailer, String cast, String genre, float length,
@@ -41,39 +47,28 @@ public class Series implements Comparable<Series> {
 //		this.language = language;
 //		this.noOfEpisodes = noOfEpisodes;
 //	}
-@Id
-	@Setter(value = AccessLevel.NONE)
-	private String id;
-
-//	@Setter(value = AccessLevel.NONE)
 	
-	private String name;
-	@Max(value=70)
-	private int ageLimit;
+	@Id
+	@Column(name = "serId")
+	private String id;
 	@NotBlank
+	private String name;
+	@Max(value = 70)
+	private int ageLimit;
 	private String trailer;
+	@NotBlank
 	private String cast;
 	@NotBlank
 	private String genre;
-	
-	private float length;
+	@NotNull
 	private String releaseDate;
+	@NotBlank
 	private String language;
-	@Min(value=1)
+	@Min(value = 1)
 	private int noOfEpisodes;
 	
-	public void setId(String id) throws InvalidIdLengthException {
-		if(id.length()<6) {
-			throw new InvalidIdLengthException("id length is less than 6");
-		}
-		this.id = id;
-	}
-	
-	public void setName(String name) throws InvalidNameException {
-		if(name==null || name=="" || name.length()<2)
-			throw new InvalidNameException("name is not valid");
-		this.name = name;
-	}
+	@OneToMany(mappedBy = "series", cascade = CascadeType.ALL)
+	private List<Episode> episodes = new ArrayList<Episode>();
 	
 	@Override
 	public int compareTo(Series o) {
