@@ -45,6 +45,7 @@ public class UserController {
 		
 		//1. It should store the received info in database
 		Register result = userService.addUser(register);
+		//Validation
 		return ResponseEntity.status(201).body(result);
 		
 		}
